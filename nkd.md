@@ -32,8 +32,8 @@ bash tools/dist_test.sh configs/resnet/resnet18_8xb32_in1k.py $new_mmcls_ckpt 8 
 ### NKD
 |  Model   | Teacher  | Baseline(Top-1 Acc) | +NKD(Top-1 Acc) |                            dis_config                            | weight |
 | :------: | :-------: | :----------------: | :------------: | :----------------------------------------------------------: | :--: |
-|   ResNet18   | ResNet34 |        69.90        |      71.96 (+2.06)      | [config](https://github.com/yzd-v/cls_KD/blob/master/configs/distillers/imagenet/res34_distill_res18_img.py) | [baidu](https://pan.baidu.com/s/1u82mk5SWYLxin6AKv9fPPw?pwd=sodb) |
-| MobileNet | ResNet50 |        69.21        |      72.58 (+3.37)      | [config](https://github.com/yzd-v/cls_KD/blob/master/configs/distillers/imagenet/res50_distill_mv1_img.py) | [baidu](https://pan.baidu.com/s/1uENiLmj5HpYyLY0dTkeeMg?pwd=paak) |
+|   ResNet18   | ResNet34 |        69.90        |      71.96 (+2.06)      | [config](https://github.com/yzd-v/cls_KD/blob/master/configs/distillers/imagenet/res34_distill_res18_img.py) | [baidu](https://pan.baidu.com/s/1u82mk5SWYLxin6AKv9fPPw?pwd=sodb)/[one drive](https://1drv.ms/u/s!Ah7OVljahSArnWB-ra7Zwe1T7SNO?e=iQhdde) |
+| MobileNet | ResNet50 |        69.21        |      72.58 (+3.37)      | [config](https://github.com/yzd-v/cls_KD/blob/master/configs/distillers/imagenet/res50_distill_mv1_img.py) | [baidu](https://pan.baidu.com/s/1uENiLmj5HpYyLY0dTkeeMg?pwd=paak)/[one drive](https://1drv.ms/u/s!Ah7OVljahSArnVoW0JxXFAZXVoOf?e=yKaAba) |
 
 ### tf-NKD
 |  Model   | Baseline(Top-1 Acc) | +tf-NKD(Top-1 Acc) |                            dis_config                            |
