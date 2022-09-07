@@ -23,12 +23,7 @@ bash tools/dist_test.sh configs/deit/deit-tiny_pt-4xb256_in1k.py $new_mmcls_ckpt
 ```
 
 ## Results
-![comparison](imgs/vitkd_compare.png)
-<style>
-    img[alt="comparison"]{
-        width:450px;
-    }
-</style>
+<img src="imgs/vitkd_compare.png" width="450px"/>
 
 
 |  Model   | Teacher  | Baseline | ViTKD | weight | ViTKD+NKD | weight |                            dis_config                            |
