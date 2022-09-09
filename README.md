@@ -1,4 +1,4 @@
-# Knowledge Distillation for Image Classification (coming soon~)
+# Knowledge Distillation for Image Classification
 This repository includes official implementation for the following papers:
 
 * [NKD and tf-NKD](https://github.com/yzd-v/cls_KD/blob/master/nkd.md): Rethinking Knowledge Distillation via Cross-Entropy
