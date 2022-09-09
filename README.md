@@ -25,6 +25,26 @@ If this repository is helpful, please give us a star ⭐ and cite relevant paper
   - You can modify the [configs](https://github.com/yzd-v/cls_KD/blob/master/configs/distillers/) to choose different distillation methods and pairs.
   - The implementation details of different methods can be seen in the folder [distillation](https://github.com/yzd-v/cls_KD/blob/master/mmcls/distillation/).
 
+## Citing NKD and tf-NKD
+```
+@article{yang2022rethinking,
+  title={Rethinking Knowledge Distillation via Cross-Entropy},
+  author={Yang, Zhendong and Li, Zhe and Gong, Yuan and Zhang, Tianke and Lao, Shanshan and Yuan, Chun and Li, Yu},
+  journal={arXiv preprint arXiv:2208.10139},
+  year={2022}
+}
+```
+
+## Citing ViTKD
+```
+@article{yang2022vitkd,
+  title={ViTKD: Practical Guidelines for ViT feature knowledge distillation},
+  author={Yang, Zhendong and Li, Zhe and Zeng, Ailing and Li, Zexian and Yuan, Chun and Li, Yu},
+  journal={arXiv preprint arXiv:2209.02432},
+  year={2022}
+}
+```
+
 ## Acknowledgement
 
 Our code is based on the project [MMClassification](https://github.com/open-mmlab/mmclassification).
