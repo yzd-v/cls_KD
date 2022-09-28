@@ -1,7 +1,7 @@
 # ViTKD
 Paper: [ViTKD: Practical Guidelines for ViT feature knowledge distillation](https://arxiv.org/abs/2209.02432)
 
-![architecture](imgs/vitkd.jpg)
+![architecture](imgs/ViTKD.jpg)
 
 ## Train
 
