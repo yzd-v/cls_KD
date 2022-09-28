@@ -44,8 +44,8 @@ class ViTKDLoss(nn.Module):
                 preds_T):
         """Forward function.
         Args:
-            preds_S(List): [B*N*D, B*N*D], student's feature map
-            preds_T(List): [B*N*D, B*N*D], teacher's feature map
+            preds_S(List): [B*2*N*D, B*N*D], student's feature map
+            preds_T(List): [B*2*N*D, B*N*D], teacher's feature map
         """
         low_s = preds_S[0]
         low_t = preds_T[0]
