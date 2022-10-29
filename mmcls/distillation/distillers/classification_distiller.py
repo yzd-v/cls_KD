@@ -25,10 +25,11 @@ class ClassificationDistiller(BaseClassifier):
 
         super(ClassificationDistiller, self).__init__()
         
-        self.teacher = build_classifier(teacher_cfg.model)
-        if teacher_pretrained:
-            self.init_weights_teacher(teacher_pretrained)
-        self.teacher.eval()
+        if not tf_nkd:
+            self.teacher = build_classifier(teacher_cfg.model)
+            if teacher_pretrained:
+                self.init_weights_teacher(teacher_pretrained)
+            self.teacher.eval()
 
         self.use_logit = use_logit
         self.vitkd = vitkd
