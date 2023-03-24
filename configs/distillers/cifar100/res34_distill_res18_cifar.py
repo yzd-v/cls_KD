@@ -2,20 +2,24 @@ _base_ = [
     '../../resnet/resnet18_8xb16_cifar100.py'
 ]
 # model settings
-find_unused_parameters=True
+find_unused_parameters = True
+
+# distillation settings
 use_logit = True
+
+# config settings
 srrl = False
 mgd = False
 wsld = False
 dkd = False
 kd = False
 nkd = True
-tf_nkd = False
+
+# method details
 distiller = dict(
     type='ClassificationDistiller',
     teacher_pretrained = 'work_dirs/resnet34_8xb16_cifar100/latest.pth',
     use_logit = use_logit,
-    tf_nkd = tf_nkd,
     distill_cfg = [ dict(methods=[dict(type='SRRLLoss',
                                        name='loss_srrl',
                                        use_this = srrl,
@@ -58,7 +62,7 @@ distiller = dict(
                                        name='loss_nkd',
                                        use_this = nkd,
                                        temp=3.0,
-                                       alpha=3.5,
+                                       gamma=3.5,
                                        )
                                 ]
                         ),

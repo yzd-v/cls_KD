@@ -2,12 +2,30 @@ _base_ = [
     '../../resnet/resnet18_b32x8_imagenet.py'
 ]
 # model settings
-find_unused_parameters=True
-tf_nkd = True
+find_unused_parameters = False
+
+# distillation settings
+sd = True
+
+# config settings
+uskd = True
+
+# method details
 distiller = dict(
     type='ClassificationDistiller',
-    teacher_pretrained = 'https://download.openmmlab.com/mmclassification/v0/resnet/resnet34_8xb32_in1k_20210831-f257d4e6.pth',
-    tf_nkd = tf_nkd,
+    teacher_pretrained = None,
+    sd = sd,
+    distill_cfg = [dict(methods=[dict(type='USKDLoss',
+                                       name='loss_uskd',
+                                       use_this=uskd,
+                                       channel=256,
+                                       alpha=1,
+                                       beta=0.1,
+                                       mu=0.005,
+                                       )
+                                ]
+                        ),
+                    ]
     )
 
 student_cfg = 'configs/resnet/resnet18_b32x8_imagenet.py'

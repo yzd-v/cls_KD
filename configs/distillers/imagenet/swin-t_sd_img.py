@@ -2,12 +2,30 @@ _base_ = [
     '../../swin_transformer/swin-tiny_16xb64_in1k.py'
 ]
 # model settings
-find_unused_parameters=True
-tf_nkd = True
+find_unused_parameters = False
+
+# distillation settings
+sd = True
+
+# config settings
+uskd = True
+
+# method details
 distiller = dict(
     type='ClassificationDistiller',
-    teacher_pretrained = 'https://download.openmmlab.com/mmclassification/v0/swin-transformer/swin_tiny_224_b16x64_300e_imagenet_20210616_090925-66df6be6.pth',
-    tf_nkd = tf_nkd,
+    teacher_pretrained = None,
+    sd = sd,
+    distill_cfg = [dict(methods=[dict(type='USKDLoss',
+                                       name='loss_uskd',
+                                       use_this=uskd,
+                                       channel=384,
+                                       alpha=1,
+                                       beta=0.1,
+                                       mu=0.005,
+                                       )
+                                ]
+                        ),
+                    ]
     )
 
 student_cfg = 'configs/swin_transformer/swin-tiny_16xb64_in1k.py'

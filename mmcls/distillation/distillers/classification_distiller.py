@@ -17,23 +17,23 @@ class ClassificationDistiller(BaseClassifier):
     def __init__(self,
                  teacher_cfg,
                  student_cfg,
-                 distill_cfg=None,
-                 teacher_pretrained=None,
-                 use_logit=False,
-                 vitkd=False,
-                 tf_nkd=False):
+                 distill_cfg = None,
+                 teacher_pretrained = None,
+                 use_logit = False,
+                 is_vit = False,
+                 sd = False):
 
         super(ClassificationDistiller, self).__init__()
         
-        if not tf_nkd:
+        if not sd:
             self.teacher = build_classifier(teacher_cfg.model)
             if teacher_pretrained:
                 self.init_weights_teacher(teacher_pretrained)
             self.teacher.eval()
 
         self.use_logit = use_logit
-        self.vitkd = vitkd
-        self.tf_nkd = tf_nkd
+        self.is_vit = is_vit
+        self.sd = sd
 
         self.student= build_classifier(student_cfg.model)
         self.student.init_weights()
@@ -84,7 +84,7 @@ class ClassificationDistiller(BaseClassifier):
         if self.student.with_head and hasattr(self.student.head, 'pre_logits'):
             x = self.student.head.pre_logits(x)
         
-        if self.vitkd:
+        if self.is_vit:
             logit_s = self.student.head.layers.head(x)
         else:
             logit_s = self.student.head.fc(x)
@@ -94,11 +94,12 @@ class ClassificationDistiller(BaseClassifier):
         for key in loss.keys():
             s_loss['ori_'+key] = loss[key]
 
-        if not self.tf_nkd:
+        """ KD """
+        if not self.sd:
             with torch.no_grad():
                 fea_t = self.teacher.extract_feat(img, stage='backbone')
                 if self.use_logit:
-                    if self.vitkd:
+                    if self.is_vit:
                         logit_t = self.teacher.head.layers.head(self.teacher.head.pre_logits(fea_t))
                     else:
                         logit_t = self.teacher.head.fc(self.teacher.head.pre_logits(self.teacher.neck(fea_t)))
@@ -135,26 +136,16 @@ class ClassificationDistiller(BaseClassifier):
                 loss_name = 'loss_nkd'
                 s_loss[loss_name] = self.distill_losses[loss_name](logit_s, logit_t, gt_label)
 
-        """PyTorch version of tf-NKD: `Rethinking Knowledge Distillation via Cross-Entropy` """
-        if self.tf_nkd:
-            if len(gt_label.size()) > 1:
-                value, label = torch.sort(gt_label,descending=True, dim=-1)
-            else:
-                label = gt_label.view(len(gt_label),1)
-                value = torch.ones_like(label)
-            # N*class
-            y_i = F.softmax(logit_s, dim=1)
-
-            if len(gt_label.size()) > 1:
-                t_len = 2
-            else:
-                t_len = 1
-            for i in range(t_len):
-                y_t = torch.gather(y_i, 1, label[:,i].unsqueeze(-1))
-                w_t = y_t + value[:,i].unsqueeze(-1) - y_t.mean()
-                w_t[value[:,i].unsqueeze(-1)==0] = 0
-                w_t = w_t.detach()
-                s_loss['loss_tf_nkd'+str(i)] = - (w_t*torch.log(y_t)).mean()
+        """ Self-KD """
+        if self.sd:
+            all_keys = self.distill_losses.keys()
+            if 'loss_uskd' in all_keys:
+                loss_name = 'loss_uskd'
+                if self.is_vit:
+                    fea_mid = fea_s[-1][0][2]
+                else:
+                    fea_mid = self.student.head.pre_logits(self.student.neck(fea_s[-2]))
+                s_loss[loss_name] = self.distill_losses[loss_name](fea_mid, logit_s, gt_label)
 
         return s_loss
     

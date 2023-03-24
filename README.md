@@ -1,7 +1,7 @@
 # Knowledge Distillation for Image Classification
 This repository includes official implementation for the following papers:
 
-* [NKD and tf-NKD](https://github.com/yzd-v/cls_KD/blob/master/nkd.md): Rethinking Knowledge Distillation via Cross-Entropy
+* [NKD and USKD](https://github.com/yzd-v/cls_KD/blob/master/nkd.md): From Knowledge Distillation to Self-Knowledge Distillation: A Unified Approach with Normalized Loss and Customized Soft Labels
 
 * [ViTKD](https://github.com/yzd-v/cls_KD/blob/master/vitkd.md): ViTKD: Practical Guidelines for ViT feature knowledge distillation
 
@@ -25,13 +25,13 @@ If this repository is helpful, please give us a star ⭐ and cite relevant paper
   - You can modify the [configs](https://github.com/yzd-v/cls_KD/blob/master/configs/distillers/) to choose different distillation methods and pairs.
   - The implementation details of different methods can be seen in the folder [distillation](https://github.com/yzd-v/cls_KD/blob/master/mmcls/distillation/).
 
-## Citing NKD and tf-NKD
+## Citing NKD and USKD
 ```
-@article{yang2022rethinking,
-  title={Rethinking Knowledge Distillation via Cross-Entropy},
-  author={Yang, Zhendong and Li, Zhe and Gong, Yuan and Zhang, Tianke and Lao, Shanshan and Yuan, Chun and Li, Yu},
-  journal={arXiv preprint arXiv:2208.10139},
-  year={2022}
+@article{yang2023knowledge,
+  title={From Knowledge Distillation to Self-Knowledge Distillation: A Unified Approach with Normalized Loss and Customized Soft Labels},
+  author={Yang, Zhendong and Zeng, Ailing and Li, Zhe and Zhang, Tianke and Yuan, Chun and Li, Yu},
+  journal={arXiv preprint arXiv:2303.13005},
+  year={2023}
 }
 ```
 

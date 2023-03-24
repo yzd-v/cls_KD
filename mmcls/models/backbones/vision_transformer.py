@@ -374,6 +374,9 @@ class VisionTransformer(BaseBackbone):
             if  i == len(self.layers) - 1:
                 high_f = x[:,1:]
 
+            if i == int(0.5*len(self.layers)) - 1:
+                mid_token = x[:, 0]
+
             if i in self.out_indices:
                 B, _, C = x.shape
                 if self.with_cls_token:
@@ -386,7 +389,7 @@ class VisionTransformer(BaseBackbone):
                     cls_token = None
                 if self.output_cls_token:
                     # out = [patch_token, cls_token]
-                    out = [[low_f, high_f], cls_token]
+                    out = [[low_f, high_f, mid_token], cls_token]
                 else:
                     out = patch_token
                 outs.append(out)

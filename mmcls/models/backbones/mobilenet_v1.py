@@ -46,12 +46,17 @@ class MobileNetV1(BaseBackbone):
             conv_dw(512, 512, 1),
             conv_dw(512, 512, 1),
             conv_dw(512, 512, 1),
+        )
+
+        self.s4 = nn.Sequential(
             conv_dw(512, 1024, 2),
             conv_dw(1024, 1024, 1),
         )
 
     def forward(self, x):
         outs = []
-        x = self.model(x)
+        x_3 = self.model(x)
+        outs.append(x_3)
+        x = self.s4(x_3)
         outs.append(x)
         return tuple(outs)

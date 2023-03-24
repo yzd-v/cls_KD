@@ -2,20 +2,25 @@ _base_ = [
     '../../deit/deit-base_pt-16xb64_in1k.py'
 ]
 # model settings
-find_unused_parameters=True
+find_unused_parameters = True
+
+# distillation settings
 use_logit = True
-vitkd = True
+is_vit = True
+
+# config settings
 wsld = False
 dkd = False
 kd = False
 nkd = True
-tf_nkd = False
+vitkd = True
+
+# method details
 distiller = dict(
     type='ClassificationDistiller',
     teacher_pretrained = 'deit-large_pt3.pth',
     use_logit = use_logit,
-    vitkd = vitkd,
-    tf_nkd = tf_nkd,
+    is_vit = is_vit,
     distill_cfg = [ dict(methods=[dict(type='ViTKDLoss',
                                        name='loss_vitkd',
                                        use_this = vitkd,
@@ -49,7 +54,7 @@ distiller = dict(
                                        name='loss_nkd',
                                        use_this = nkd,
                                        temp=1.0,
-                                       alpha=1.0,
+                                       gamma=1.0,
                                        )
                                 ]
                         ),

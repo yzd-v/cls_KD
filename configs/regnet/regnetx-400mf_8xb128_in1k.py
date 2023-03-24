@@ -5,6 +5,11 @@ _base_ = [
     '../_base_/default_runtime.py'
 ]
 
+model = dict(
+    backbone=dict(
+        out_indices=(0,1,2,3))
+    )
+
 # Precise BN hook will update the bn stats, so this hook should be executed
 # before CheckpointHook, which has priority of 'NORMAL'. So set the
 # priority of PreciseBNHook to 'ABOVE_NORMAL' here.
