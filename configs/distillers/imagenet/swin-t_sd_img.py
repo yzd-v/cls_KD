@@ -2,7 +2,7 @@ _base_ = [
     '../../swin_transformer/swin-tiny_16xb64_in1k.py'
 ]
 # model settings
-find_unused_parameters = False
+find_unused_parameters = True
 
 # distillation settings
 sd = True
