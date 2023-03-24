@@ -52,10 +52,10 @@ bash tools/dist_test.sh configs/resnet/resnet18_8xb32_in1k.py $new_mmcls_ckpt 8 
 
 ## Citation
 ```
-@article{yang2022rethinking,
-  title={Rethinking Knowledge Distillation via Cross-Entropy},
-  author={Yang, Zhendong and Li, Zhe and Gong, Yuan and Zhang, Tianke and Lao, Shanshan and Yuan, Chun and Li, Yu},
-  journal={arXiv preprint arXiv:2208.10139},
-  year={2022}
+@article{yang2023knowledge,
+  title={From Knowledge Distillation to Self-Knowledge Distillation: A Unified Approach with Normalized Loss and Customized Soft Labels},
+  author={Yang, Zhendong and Zeng, Ailing and Li, Zhe and Zhang, Tianke and Yuan, Chun and Li, Yu},
+  journal={arXiv preprint arXiv:2303.13005},
+  year={2023}
 }
 ```
