@@ -1,5 +1,5 @@
 # NKD and USKD
-Paper: [From Knowledge Distillation to Self-Knowledge Distillation: A Unified Approach with Normalized Loss and Customized Soft Labels](https://arxiv.org/abs/2303.13005)
+ICCV 2023 Paper: [From Knowledge Distillation to Self-Knowledge Distillation: A Unified Approach with Normalized Loss and Customized Soft Labels](https://arxiv.org/abs/2303.13005)
 
 ![architecture](imgs/architecture.jpg)
 

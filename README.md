@@ -1,7 +1,7 @@
 # Knowledge Distillation for Image Classification
 This repository includes official implementation for the following papers:
 
-* [NKD and USKD](https://github.com/yzd-v/cls_KD/blob/master/nkd.md): From Knowledge Distillation to Self-Knowledge Distillation: A Unified Approach with Normalized Loss and Customized Soft Labels
+* ICCV 2023: [NKD and USKD](https://github.com/yzd-v/cls_KD/blob/master/nkd.md): From Knowledge Distillation to Self-Knowledge Distillation: A Unified Approach with Normalized Loss and Customized Soft Labels
 
 * [ViTKD](https://github.com/yzd-v/cls_KD/blob/master/vitkd.md): ViTKD: Practical Guidelines for ViT feature knowledge distillation
 
@@ -15,8 +15,8 @@ If this repository is helpful, please give us a star ⭐ and cite relevant paper
   - Prepare the dataset in data/imagenet
   - ```
     # Set environment
-    pip install -r requirements.txt
     pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
+    pip install -r requirements.txt
     ```
   - This repo uses mmcls = 0.23.2. If you want to use lower mmcls version for distillation, you can refer [MGD](https://github.com/yzd-v/MGD) to change the codes.
 

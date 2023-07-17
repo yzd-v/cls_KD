@@ -23,6 +23,7 @@ class USKDLoss(nn.Module):
         self.alpha = alpha
         self.beta = beta
         self.mu = mu
+        self.log_softmax = nn.LogSoftmax(dim=1)
 
         self.fc = nn.Linear(channel, num_classes)
         self.zipf = 1 / torch.arange(1, num_classes + 1).cuda()
@@ -48,7 +49,10 @@ class USKDLoss(nn.Module):
         p_t = p_t + value - p_t.mean(0, True)
         p_t[value==0] = 0
         p_t = p_t.detach()
-        loss_t = - (p_t * torch.log(s_t)).sum(dim=1).mean()
+
+        s_i = self.log_softmax(logit_s)
+        s_t = torch.gather(s_i, 1, label)
+        loss_t = - (p_t * s_t).sum(dim=1).mean()
 
         # weak supervision
         if len(gt_label.size()) > 1:
@@ -57,10 +61,12 @@ class USKDLoss(nn.Module):
             target = torch.zeros_like(logit_s).scatter_(1, label, 0.9) + 0.1 * torch.ones_like(logit_s) / c
         
         # weak logit
-        w_i = F.softmax(self.fc(fea_mid), dim=1)
-        loss_weak = - (self.mu * target * torch.log(w_i)).sum(dim=1).mean()
+        w_fc = self.fc(fea_mid)
+        w_i = self.log_softmax(w_fc)
+        loss_weak = - (self.mu * target * w_i).sum(dim=1).mean()
 
         # N*class
+        w_i = F.softmax(w_fc, dim=1)
         w_t = torch.gather(w_i, 1, label)
 
         # rank
@@ -75,13 +81,13 @@ class USKDLoss(nn.Module):
         mask = torch.ones_like(logit_s).scatter_(1, label, 0).bool()
 
         logit_s = logit_s[mask].reshape(N, -1)
-        ns_i = F.softmax(logit_s, dim=1)
+        ns_i = self.log_softmax(logit_s)
 
         nz_i = z_i[mask].reshape(N, -1)
         nz_i = nz_i/nz_i.sum(dim=1, keepdim=True)
 
         nz_i = nz_i.detach()
-        loss_non = - (nz_i*torch.log(ns_i)).sum(dim=1).mean()
+        loss_non = - (nz_i *ns_i).sum(dim=1).mean()
 
         # overall
         loss_uskd = self.alpha * loss_t + self.beta * loss_non + loss_weak
