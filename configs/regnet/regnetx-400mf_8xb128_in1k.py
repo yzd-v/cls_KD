@@ -5,6 +5,11 @@ _base_ = [
     '../_base_/default_runtime.py'
 ]
 
+model = dict(
+    backbone=dict(
+        out_indices=(2,3))
+    )
+
 # dataset settings
 data_preprocessor = dict(
     # BGR format normalization parameters

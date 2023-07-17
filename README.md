@@ -15,10 +15,10 @@ If this repository is helpful, please give us a star ⭐ and cite relevant paper
   - Prepare the dataset in data/imagenet
   - ```
     # Set environment
-    pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
+    pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
     pip install -r requirements.txt
     ```
-  - This repo uses mmcls = 0.23.2. If you want to use lower mmcls version for distillation, you can refer [MGD](https://github.com/yzd-v/MGD) to change the codes.
+  - This repo uses mmcls = 1.0.0rc6. If you want to use lower mmcls version for distillation, you can refer branch [master](https://github.com/yzd-v/cls_KD/tree/master) to change the codes.
 
 ## Run
   - Please refer [nkd.md](https://github.com/yzd-v/cls_KD/blob/1.0/nkd.md) and [vitkd.md](https://github.com/yzd-v/cls_KD/blob/1.0/vitkd.md) to train the student and get the weight.
@@ -47,4 +47,4 @@ If this repository is helpful, please give us a star ⭐ and cite relevant paper
 
 ## Acknowledgement
 
-Our code is based on the project [MMClassification](https://github.com/open-mmlab/mmclassification).
+Our code is based on the project [MMPretrain](https://github.com/open-mmlab/mmpretrain/tree/main).

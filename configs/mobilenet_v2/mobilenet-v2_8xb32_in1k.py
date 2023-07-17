@@ -4,3 +4,8 @@ _base_ = [
     '../_base_/schedules/imagenet_bs256_epochstep.py',
     '../_base_/default_runtime.py'
 ]
+
+model = dict(
+    backbone=dict(
+        out_indices=(4,5,6,7))
+    )

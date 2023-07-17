@@ -4,3 +4,8 @@ _base_ = [
     '../_base_/schedules/imagenet_bs1024_linearlr_bn_nowd.py',
     '../_base_/default_runtime.py'
 ]
+
+model = dict(
+    backbone=dict(
+        out_indices=(2,3))
+    )

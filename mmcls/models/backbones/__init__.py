@@ -20,6 +20,7 @@ from .lenet import LeNet5
 from .levit import LeViT
 from .mixmim import MixMIMTransformer
 from .mlp_mixer import MlpMixer
+from .mobilenet_v1 import MobileNetV1
 from .mobilenet_v2 import MobileNetV2
 from .mobilenet_v3 import MobileNetV3
 from .mobileone import MobileOne
@@ -67,6 +68,7 @@ __all__ = [
     'SEResNeXt',
     'ShuffleNetV1',
     'ShuffleNetV2',
+    'MobileNetV1',
     'MobileNetV2',
     'MobileNetV3',
     'VisionTransformer',
