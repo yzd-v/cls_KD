@@ -18,7 +18,7 @@ If this repository is helpful, please give us a star ⭐ and cite relevant paper
     pip install torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
     pip install -r requirements.txt
     ```
-  - This repo uses mmcls = 0.23.2. If you want to use lower mmcls version for distillation, you can refer [MGD](https://github.com/yzd-v/MGD) to change the codes.
+  - This repo uses mmcls = 0.23.2. If you want to use higher mmcls version for distillation, you can refer branch [1.0](https://github.com/yzd-v/cls_KD/tree/1.0) to change the codes.
 
 ## Run
   - Please refer [nkd.md](https://github.com/yzd-v/cls_KD/blob/master/nkd.md) and [vitkd.md](https://github.com/yzd-v/cls_KD/blob/master/vitkd.md) to train the student and get the weight.
