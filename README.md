@@ -23,7 +23,7 @@ If this repository is helpful, please give us a star ⭐ and cite relevant paper
 ## Run
   - Please refer [nkd.md](https://github.com/yzd-v/cls_KD/blob/1.0/nkd.md) and [vitkd.md](https://github.com/yzd-v/cls_KD/blob/1.0/vitkd.md) to train the student and get the weight.
   - You can modify the [configs](https://github.com/yzd-v/cls_KD/blob/1.0/configs/distillers/) to choose different distillation methods and pairs.
-  - The implementation details of different methods can be seen in the folder [distillation](https://github.com/yzd-v/cls_KD/blob/1.0/mmcls/distillation/).
+  - The implementation details of different methods can be seen in the folder [dis_losses](https://github.com/yzd-v/cls_KD/tree/1.0/mmcls/models/dis_losses).
 
 ## Citing NKD and USKD
 ```
