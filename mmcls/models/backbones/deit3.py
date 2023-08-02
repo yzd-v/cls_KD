@@ -424,6 +424,16 @@ class DeiT3(VisionTransformer):
             if i == len(self.layers) - 1 and self.final_norm:
                 x = self.norm1(x)
 
+            if  i in [1]:
+                low_f_s = x[:,1:]
+                low_f = torch.cat((low_f, low_f_s.unsqueeze(1)),dim=1)
+            elif i == 0:
+                low_f = x[:,1:]
+                low_f = low_f.unsqueeze(1)
+
+            if  i == len(self.layers) - 1:
+                high_f = x[:,1:]
+
             if i in self.out_indices:
                 B, _, C = x.shape
                 if self.with_cls_token:
@@ -435,7 +445,8 @@ class DeiT3(VisionTransformer):
                     patch_token = patch_token.permute(0, 3, 1, 2)
                     cls_token = None
                 if self.output_cls_token:
-                    out = [patch_token, cls_token]
+                    # out = [patch_token, cls_token]
+                    out = [[low_f, high_f], cls_token]
                 else:
                     out = patch_token
                 outs.append(out)
