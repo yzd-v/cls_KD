@@ -27,10 +27,11 @@ If this repository is helpful, please give us a star ⭐ and cite relevant paper
 
 ## Citing NKD and USKD
 ```
-@article{yang2023knowledge,
+@inproceedings{yang2023knowledge,
   title={From Knowledge Distillation to Self-Knowledge Distillation: A Unified Approach with Normalized Loss and Customized Soft Labels},
-  author={Yang, Zhendong and Zeng, Ailing and Li, Zhe and Zhang, Tianke and Yuan, Chun and Li, Yu},
-  journal={arXiv preprint arXiv:2303.13005},
+  author={Yang, Zhendong and Zeng, Ailing and Yuan, Chun and Li, Yu},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={17185--17194},
   year={2023}
 }
 ```
