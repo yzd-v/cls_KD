@@ -37,7 +37,7 @@ class NKDLoss(nn.Module):
 
         loss_t = - (t_t * s_t).mean()
 
-        mask = torch.ones_like(logit_s).scatter_(1, label, 1).bool()
+        mask = torch.ones_like(logit_s).scatter_(1, label, 0).bool()
         logit_s = logit_s[mask].reshape(N, -1)
         logit_t = logit_t[mask].reshape(N, -1)
         
